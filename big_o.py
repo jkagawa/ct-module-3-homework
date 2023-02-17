@@ -30,13 +30,16 @@ def exponentialFunc(n):
 print('Constant function:')
 constantFunc([1,2,3])
 constantFunc([1,2,3,4,5,6,7,8,9,10])
+
 print('Linear function:')
 linearFunc([1,2,3])
 linearFunc([1,2,3,4,5,6,7,8,9,10])
+
 print('Exponential function:')
 exponentialFunc([1,2,3])
 print('Longer list takes much longer!!! Imagine 100 items!')
 exponentialFunc([1,2,3,4,5,6,7,8,9,10])
+
 # Logarithmic function is our phonebook example, aka a binary tree
 # We also could do factorial but that would take so long I'd nap and come back so we'll pass
 # An example of a factorial would be our recursive methods that we did a document or two ago
