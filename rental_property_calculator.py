@@ -9,9 +9,13 @@ class RentalProperty():
         self.rehab_budget = rehab_budget
         self.misc_other = misc_other
     
-    def getMonthlyIncome(self, rental_income):
+    def getMonthlyIncome(self, rental_income, laundry, storage, misc):
         self.rental_income = rental_income
-        return "Monthly income from the property is ${:,.2f}".format(self.rental_income)
+        self.laundry = laundry
+        self.storage = storage
+        self.misc = misc
+        total_income = rental_income + laundry + storage + misc
+        return "Monthly income from the property is ${:,.2f}".format(total_income)
 
     def getMonthlyExpenses(self, tax, insurance, utilities, hoa, maintenance, capex, mortgage):
         self.tax = tax
@@ -63,7 +67,7 @@ def convertToIntorFloat(string):
 
 while True:
     quit = False
-    down_payment, closing_costs, rehab_budget, misc_other, rental_income = "", "", "", "", ""
+    down_payment, closing_costs, rehab_budget, misc_other, rental_income, income_laundry, income_storage, income_misc = "", "", "", "", "", "", "", ""
     print('Welcome! Please answer the following questions. You may type "QUIT" to exit anytime')
     while True:
         down_payment = input("Enter the down payment amount (in US Dollars): ")
@@ -122,9 +126,42 @@ while True:
     if rental_income.lower() == 'quit':
         print("You have exited!")
         break
+
+    while True:
+        income_laundry = input("Please enter income from laundry (in US Dollars): ")
+        if income_laundry.lower() != 'quit' and not income_laundry.replace(".", "").isnumeric():
+            print("Please enter a valid amount")
+        else:
+            break
+    if income_laundry.lower() == 'quit':
+        print("You have exited!")
+        break
+
+    while True:
+        income_storage = input("Please enter income from storage (in US Dollars): ")
+        if income_storage.lower() != 'quit' and not income_storage.replace(".", "").isnumeric():
+            print("Please enter a valid amount")
+        else:
+            break
+    if income_storage.lower() == 'quit':
+        print("You have exited!")
+        break
+
+    while True:
+        income_misc = input("Please enter miscellaneous income (in US Dollars): ")
+        if income_misc.lower() != 'quit' and not income_misc.replace(".", "").isnumeric():
+            print("Please enter a valid amount")
+        else:
+            break
+    if income_misc.lower() == 'quit':
+        print("You have exited!")
+        break
     
     rental_income = convertToIntorFloat(rental_income)
-    print(property_1.getMonthlyIncome(rental_income))
+    income_laundry = convertToIntorFloat(income_laundry)
+    income_storage = convertToIntorFloat(income_storage)
+    income_misc = convertToIntorFloat(income_misc)
+    print(property_1.getMonthlyIncome(rental_income, income_laundry, income_storage, income_misc))
 
     tax, insurance, utilities, hoa, maintenance, capex, mortgage = "", "", "", "", "", "", ""
 
